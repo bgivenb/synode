@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Synode operations console for governed, auditable AI workflows." />
+    <title>Synode · Workflow operations</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <a class="brand" href="#overview" aria-label="Synode operations overview">
+          <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span><span></span></span>
+          <span>synode</span>
+        </a>
+        <div class="environment"><span></span> Research environment</div>
+        <nav aria-label="Console navigation">
+          <p>OPERATIONS</p>
+          <a class="active" href="#overview"><span>◫</span> Overview</a>
+          <a href="#run-detail"><span>≡</span> Runs</a>
+          <a href="#approvals"><span>✓</span> Approvals <strong>1</strong></a>
+          <a href="#policies"><span>⌘</span> Policies</a>
+          <p>DATA &amp; ASSURANCE</p>
+          <a href="#knowledge"><span>⌬</span> Knowledge</a>
+          <a href="#evaluations"><span>◇</span> Evaluations</a>
+          <a href="#run-detail"><span>↺</span> Audit log</a>
+          <a href="#system"><span>⊙</span> System health</a>
+        </nav>
+        <div class="sidebar-footer">
+          <span>DEMO DATA</span><strong>northstar-demo</strong><small>All entities are synthetic.</small>
+        </div>
+      </aside>
+
+      <div class="workspace">
+        <header class="topbar">
+          <div class="breadcrumb"><span>Control plane</span><b>/</b><strong>Overview</strong></div>
+          <div class="topbar-actions">
+            <span class="system-state"><i></i> System healthy</span>
+            <a href="https://github.com/bgivenb/synode">Source</a>
+          </div>
+        </header>
+
+        <main id="overview">
+          <section class="page-header">
+            <div>
+              <p class="eyebrow">WORKFLOW OPERATIONS</p>
+              <h1>Governed agent execution</h1>
+              <p>Inspect policy decisions, approvals, tool attempts, and audit evidence.</p>
+            </div>
+            <span class="demo-badge">Synthetic research scenario</span>
+          </section>
+
+          <section class="stat-grid" aria-label="Run summary">
+            <article class="stat-card"><span>Run status</span><strong class="status-value"><i></i><b id="run-status">Loading</b></strong><small>run-synthetic-0142</small></article>
+            <article class="stat-card"><span>Ledger events</span><strong id="metric-events">—</strong><small>Append-only sequence</small></article>
+            <article class="stat-card"><span>Human decisions</span><strong id="metric-approvals">—</strong><small>Attributed approval</small></article>
+            <article class="stat-card"><span>Recovered failures</span><strong id="metric-retries">—</strong><small>Bounded retry policy</small></article>
+          </section>
+
+          <section class="primary-grid">
+            <article class="panel run-panel">
+              <div class="panel-header">
+                <div><p>ACTIVE RUN</p><h2>Synthetic operational hold review</h2></div>
+                <span class="verified-chip">✓ Ledger verified</span>
+              </div>
+              <table class="step-table">
+                <caption class="sr-only">Workflow steps</caption>
+                <thead>
+                  <tr class="table-heading"><th>STEP</th><th>ACTOR</th><th>CONTROL</th><th>STATE</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td><b>01</b> Gather evidence</td><td>evidence-agent</td><td>Tenant-scoped retrieval</td><td><em>Completed</em></td></tr>
+                  <tr><td><b>02</b> Assess evidence</td><td>risk-agent</td><td>Runtime schema</td><td><em>Completed</em></td></tr>
+                  <tr><td><b>03</b> Release hold</td><td>operations-agent</td><td>Human checkpoint</td><td><em>Completed</em></td></tr>
+                </tbody>
+              </table>
+              <div class="ledger-strip"><span>Final ledger digest</span><code id="ledger-hash">loading…</code></div>
+            </article>
+
+            <aside class="panel approval-panel" id="approvals">
+              <div class="panel-header"><div><p>APPROVAL HISTORY</p><h2>1 decision recorded</h2></div><span class="amber-dot"></span></div>
+              <dl>
+                <dt>Action</dt><dd>case.release</dd><dt>Risk</dt><dd><span class="risk-high">High</span> · irreversible</dd>
+                <dt>Reviewer</dt><dd>demo-operator</dd><dt>Evidence</dt><dd>2 referenced records</dd>
+                <dt>Decision</dt><dd class="approved">Approved</dd>
+              </dl>
+              <p>The runtime suspended the exact tool call until a separately attributed decision was recorded.</p>
+            </aside>
+          </section>
+
+          <section class="panel controls-panel" id="policies">
+            <div class="panel-header"><div><p>POLICY COVERAGE</p><h2>Runtime controls</h2></div><span>6 controls exercised</span></div>
+            <div class="control-grid" id="controls"></div>
+          </section>
+
+          <section class="event-grid" id="run-detail">
+            <article class="panel timeline-panel">
+              <div class="panel-header event-header">
+                <div><p>AUDIT LOG</p><h2>Event stream</h2></div>
+                <fieldset class="filter-group"><legend class="sr-only">Filter events</legend><button class="filter active" data-filter="all" type="button">All</button><button class="filter" data-filter="policy" type="button">Policy</button><button class="filter" data-filter="approval" type="button">Approval</button><button class="filter" data-filter="tool" type="button">Tools</button></fieldset>
+              </div>
+              <ol class="timeline" id="timeline"></ol>
+            </article>
+            <aside class="panel detail-panel" aria-live="polite">
+              <p>EVENT DETAIL</p><h2 id="event-title">Choose a ledger event</h2><dl id="event-metadata"></dl><pre id="event-json"><code>{}</code></pre>
+            </aside>
+          </section>
+
+          <section class="secondary-grid">
+            <article class="panel graph-panel" id="knowledge">
+              <div class="panel-header"><div><p>SCOPED KNOWLEDGE</p><h2>Evidence graph</h2></div><span class="tenant-chip">northstar-demo</span></div>
+              <svg id="knowledge-graph" viewBox="0 0 640 300" role="img" aria-label="Tenant-scoped knowledge graph"></svg>
+              <div class="graph-footer"><span>4 visible nodes</span><span>3 provenance edges</span><span>0 cross-tenant results</span></div>
+            </article>
+            <article class="panel assurance-panel" id="evaluations">
+              <div class="panel-header"><div><p>ASSURANCE</p><h2>Evaluation scenarios</h2></div><span class="verified-chip">2 / 2 passing</span></div>
+              <div class="evaluation-list" id="evaluation-list"></div>
+            </article>
+          </section>
+
+          <section class="panel system-panel" id="system">
+            <div class="panel-header"><div><p>RUNTIME HEALTH</p><h2>Control-plane checks</h2></div><span>Evaluated from deterministic run data</span></div>
+            <div class="health-grid">
+              <div><i></i><span>Event ledger<strong>Hash chain valid</strong></span></div><div><i></i><span>Policy engine<strong>4 rules evaluated</strong></span></div>
+              <div><i></i><span>Idempotency store<strong>No conflicts</strong></span></div><div><i></i><span>Evaluation suite<strong>All scenarios passing</strong></span></div>
+            </div>
+          </section>
+
+          <footer><span>Synode reference implementation</span><span>All organizations, identifiers, and outcomes are synthetic.</span><a href="https://github.com/bgivenb/synode">Documentation</a></footer>
+        </main>
+      </div>
+    </div>
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
