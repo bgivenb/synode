@@ -19,7 +19,7 @@
     "lint": "biome lint .",
     "serve": "tsx src/server.ts",
     "test": "vitest run",
-    "test:postgres": "vitest run tests/postgres.integration.ts",
+    "test:postgres": "vitest run --config vitest.postgres.config.ts",
     "test:coverage": "vitest run --coverage",
     "typecheck": "tsc --noEmit",
     "verify": "npm run format:check && npm run lint && npm run typecheck && npm run test:coverage && npm run build && npm run infra:synth && npm run demo:verify"
