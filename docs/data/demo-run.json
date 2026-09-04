@@ -1,0 +1,587 @@
+{
+  "controls": [
+    {
+      "name": "Typed inputs",
+      "result": "Zod-validated before every tool invocation"
+    },
+    {
+      "name": "Tenant boundary",
+      "result": "Enforced in policy and retrieval layers"
+    },
+    {
+      "name": "Human checkpoint",
+      "result": "Required for high-risk and irreversible actions"
+    },
+    {
+      "name": "Idempotency",
+      "result": "Run-scoped keys prevent duplicate side effects"
+    },
+    {
+      "name": "Recovery",
+      "result": "Transient failure retried with deterministic backoff"
+    },
+    {
+      "name": "Audit integrity",
+      "result": "SHA-256 event chain verified before projection"
+    }
+  ],
+  "evaluation": {
+    "cases": [
+      {
+        "assertions": [
+          {
+            "actual": "completed",
+            "expected": "completed",
+            "label": "final status",
+            "passed": true
+          },
+          {
+            "actual": 1,
+            "expected": 1,
+            "label": "human approvals",
+            "passed": true
+          },
+          {
+            "actual": 1,
+            "expected": 1,
+            "label": "retryable failures",
+            "passed": true
+          },
+          {
+            "actual": true,
+            "expected": true,
+            "label": "ledger integrity",
+            "passed": true
+          }
+        ],
+        "id": "approval-and-recovery",
+        "name": "High-risk action pauses, receives approval, and survives a transient failure",
+        "passed": true
+      },
+      {
+        "assertions": [
+          {
+            "actual": false,
+            "expected": false,
+            "label": "cross-tenant records returned",
+            "passed": true
+          }
+        ],
+        "id": "tenant-isolation",
+        "name": "Graph retrieval never crosses tenant boundaries",
+        "passed": true
+      }
+    ],
+    "failed": 0,
+    "passed": 2,
+    "total": 2
+  },
+  "events": [
+    {
+      "actor": "system",
+      "data": {
+        "definitionId": "synthetic-hold-review",
+        "version": "1.0.0"
+      },
+      "type": "run.started",
+      "eventId": "evt-0001",
+      "occurredAt": "2026-09-04T17:00:00.000Z",
+      "previousHash": null,
+      "runId": "run-synthetic-0142",
+      "sequence": 1,
+      "hash": "6c4ecde5e2bda4a0d3b51a7612c37c9551a60d277fbb7cb2b4eaed0b2b46a17e"
+    },
+    {
+      "actor": "evidence-agent",
+      "data": {
+        "callCount": 1,
+        "stepId": "gather-evidence",
+        "summary": "Retrieve the minimum tenant-scoped context needed for assessment"
+      },
+      "type": "proposal.created",
+      "eventId": "evt-0002",
+      "occurredAt": "2026-09-04T17:00:01.000Z",
+      "previousHash": "6c4ecde5e2bda4a0d3b51a7612c37c9551a60d277fbb7cb2b4eaed0b2b46a17e",
+      "runId": "run-synthetic-0142",
+      "sequence": 2,
+      "hash": "65a5d5c7ceecb0ae1ea5ee0d6199db49e2f39293a68dc1af0b4b9e5a353b733d"
+    },
+    {
+      "actor": "policy-engine",
+      "data": {
+        "callId": "retrieve-case-context",
+        "decisions": [],
+        "effect": "allow",
+        "tool": "knowledge.retrieve"
+      },
+      "type": "policy.evaluated",
+      "eventId": "evt-0003",
+      "occurredAt": "2026-09-04T17:00:02.000Z",
+      "previousHash": "65a5d5c7ceecb0ae1ea5ee0d6199db49e2f39293a68dc1af0b4b9e5a353b733d",
+      "runId": "run-synthetic-0142",
+      "sequence": 3,
+      "hash": "cda9336ec9a6ed8eeee7490230faff0ad2360219a6de49bdd2e385cd521717e8"
+    },
+    {
+      "actor": "tool-runtime",
+      "data": {
+        "attempt": 1,
+        "callId": "retrieve-case-context",
+        "tool": "knowledge.retrieve"
+      },
+      "type": "tool.attempt.started",
+      "eventId": "evt-0004",
+      "occurredAt": "2026-09-04T17:00:03.000Z",
+      "previousHash": "cda9336ec9a6ed8eeee7490230faff0ad2360219a6de49bdd2e385cd521717e8",
+      "runId": "run-synthetic-0142",
+      "sequence": 4,
+      "hash": "8503f2334872362aafe3f93cfa4cc3ab93cc95576b0074b5736f6f509dc8dd7f"
+    },
+    {
+      "actor": "tool-runtime",
+      "data": {
+        "attempt": 1,
+        "callId": "retrieve-case-context",
+        "tool": "knowledge.retrieve"
+      },
+      "type": "tool.attempt.completed",
+      "eventId": "evt-0005",
+      "occurredAt": "2026-09-04T17:00:04.000Z",
+      "previousHash": "8503f2334872362aafe3f93cfa4cc3ab93cc95576b0074b5736f6f509dc8dd7f",
+      "runId": "run-synthetic-0142",
+      "sequence": 5,
+      "hash": "20794fd54f0079e866d3b5eae16e9c249f5016f71e4e560032a6f7f9a50c4be7"
+    },
+    {
+      "actor": "tool-runtime",
+      "data": {
+        "attempts": 1,
+        "callId": "retrieve-case-context",
+        "output": {
+          "evidenceIds": ["evidence-signal-0021", "evidence-doc-0088"],
+          "hitCount": 4,
+          "provenancePaths": [
+            ["case-0142", "evidence-signal-0021"],
+            ["case-0142"],
+            ["case-0142", "evidence-doc-0088"],
+            ["case-0142", "party-0901"]
+          ]
+        },
+        "replayed": false,
+        "tool": "knowledge.retrieve"
+      },
+      "type": "tool.completed",
+      "eventId": "evt-0006",
+      "occurredAt": "2026-09-04T17:00:05.000Z",
+      "previousHash": "20794fd54f0079e866d3b5eae16e9c249f5016f71e4e560032a6f7f9a50c4be7",
+      "runId": "run-synthetic-0142",
+      "sequence": 6,
+      "hash": "caabd24be4552b2a538956764db0705f92f2e37114094d6b26ce761d91cf0874"
+    },
+    {
+      "actor": "system",
+      "data": {
+        "stepId": "gather-evidence"
+      },
+      "type": "step.completed",
+      "eventId": "evt-0007",
+      "occurredAt": "2026-09-04T17:00:06.000Z",
+      "previousHash": "caabd24be4552b2a538956764db0705f92f2e37114094d6b26ce761d91cf0874",
+      "runId": "run-synthetic-0142",
+      "sequence": 7,
+      "hash": "da82009eca312d2838f05f23c7efe1d434498f1851ce0366e0be211ec1cf92c7"
+    },
+    {
+      "actor": "risk-agent",
+      "data": {
+        "callCount": 1,
+        "stepId": "assess-risk",
+        "summary": "Produce a deterministic recommendation from verified evidence"
+      },
+      "type": "proposal.created",
+      "eventId": "evt-0008",
+      "occurredAt": "2026-09-04T17:00:07.000Z",
+      "previousHash": "da82009eca312d2838f05f23c7efe1d434498f1851ce0366e0be211ec1cf92c7",
+      "runId": "run-synthetic-0142",
+      "sequence": 8,
+      "hash": "d5932dff82a3becbae6830d5e629a57e807b4927902001eb01cbfa04a09fc517"
+    },
+    {
+      "actor": "policy-engine",
+      "data": {
+        "callId": "assess-case-risk",
+        "decisions": [],
+        "effect": "allow",
+        "tool": "risk.assess"
+      },
+      "type": "policy.evaluated",
+      "eventId": "evt-0009",
+      "occurredAt": "2026-09-04T17:00:08.000Z",
+      "previousHash": "d5932dff82a3becbae6830d5e629a57e807b4927902001eb01cbfa04a09fc517",
+      "runId": "run-synthetic-0142",
+      "sequence": 9,
+      "hash": "961ac854b047d67c7f18dfadafcbf047414fa7bc973ffe24547688c3e01a2b86"
+    },
+    {
+      "actor": "tool-runtime",
+      "data": {
+        "attempt": 1,
+        "callId": "assess-case-risk",
+        "tool": "risk.assess"
+      },
+      "type": "tool.attempt.started",
+      "eventId": "evt-0010",
+      "occurredAt": "2026-09-04T17:00:09.000Z",
+      "previousHash": "961ac854b047d67c7f18dfadafcbf047414fa7bc973ffe24547688c3e01a2b86",
+      "runId": "run-synthetic-0142",
+      "sequence": 10,
+      "hash": "7e158d63ed1ecf8dc603a0ebd9541f1291215a6c3ffb77601231d3d19a0eb0b4"
+    },
+    {
+      "actor": "tool-runtime",
+      "data": {
+        "attempt": 1,
+        "callId": "assess-case-risk",
+        "tool": "risk.assess"
+      },
+      "type": "tool.attempt.completed",
+      "eventId": "evt-0011",
+      "occurredAt": "2026-09-04T17:00:10.000Z",
+      "previousHash": "7e158d63ed1ecf8dc603a0ebd9541f1291215a6c3ffb77601231d3d19a0eb0b4",
+      "runId": "run-synthetic-0142",
+      "sequence": 11,
+      "hash": "06f9d049e74a7d619c7e4df9115ce1dd078f571bce8f4c2c367ccaffea87c4d2"
+    },
+    {
+      "actor": "tool-runtime",
+      "data": {
+        "attempts": 1,
+        "callId": "assess-case-risk",
+        "output": {
+          "band": "low",
+          "evidenceCount": 2,
+          "score": 24
+        },
+        "replayed": false,
+        "tool": "risk.assess"
+      },
+      "type": "tool.completed",
+      "eventId": "evt-0012",
+      "occurredAt": "2026-09-04T17:00:11.000Z",
+      "previousHash": "06f9d049e74a7d619c7e4df9115ce1dd078f571bce8f4c2c367ccaffea87c4d2",
+      "runId": "run-synthetic-0142",
+      "sequence": 12,
+      "hash": "b985de085b954ce74b71db2e27b21c75523cf5b78aa4a2938286ef4e4b5108c3"
+    },
+    {
+      "actor": "system",
+      "data": {
+        "stepId": "assess-risk"
+      },
+      "type": "step.completed",
+      "eventId": "evt-0013",
+      "occurredAt": "2026-09-04T17:00:12.000Z",
+      "previousHash": "b985de085b954ce74b71db2e27b21c75523cf5b78aa4a2938286ef4e4b5108c3",
+      "runId": "run-synthetic-0142",
+      "sequence": 13,
+      "hash": "08ad0d540e7a410b38808cbd5ccc7bfc652ac7a7df43c7e588447160fe68dd5a"
+    },
+    {
+      "actor": "operations-agent",
+      "data": {
+        "callCount": 1,
+        "stepId": "propose-action",
+        "summary": "Propose releasing the hold while preserving human accountability"
+      },
+      "type": "proposal.created",
+      "eventId": "evt-0014",
+      "occurredAt": "2026-09-04T17:00:13.000Z",
+      "previousHash": "08ad0d540e7a410b38808cbd5ccc7bfc652ac7a7df43c7e588447160fe68dd5a",
+      "runId": "run-synthetic-0142",
+      "sequence": 14,
+      "hash": "f59f1f9024a19cc94efbcfd8d8ffa1afec214226ffffe2d4eeb888fd55b21617"
+    },
+    {
+      "actor": "policy-engine",
+      "data": {
+        "callId": "release-case-hold",
+        "decisions": [
+          {
+            "effect": "require_approval",
+            "policyId": "high-risk-human-approval",
+            "reason": "case.release is high risk and requires an accountable human decision"
+          },
+          {
+            "effect": "require_approval",
+            "policyId": "irreversible-action-checkpoint",
+            "reason": "case.release cannot be automatically rolled back"
+          }
+        ],
+        "effect": "require_approval",
+        "tool": "case.release"
+      },
+      "type": "policy.evaluated",
+      "eventId": "evt-0015",
+      "occurredAt": "2026-09-04T17:00:14.000Z",
+      "previousHash": "f59f1f9024a19cc94efbcfd8d8ffa1afec214226ffffe2d4eeb888fd55b21617",
+      "runId": "run-synthetic-0142",
+      "sequence": 15,
+      "hash": "6ea571d1ba81de696c97a6d32ed6c1f88b5e61716ae3ad5d08448d9ddcb46424"
+    },
+    {
+      "actor": "policy-engine",
+      "data": {
+        "approvalId": "approval-001",
+        "callId": "release-case-hold",
+        "stepId": "propose-action",
+        "tool": "case.release"
+      },
+      "type": "approval.requested",
+      "eventId": "evt-0016",
+      "occurredAt": "2026-09-04T17:00:15.000Z",
+      "previousHash": "6ea571d1ba81de696c97a6d32ed6c1f88b5e61716ae3ad5d08448d9ddcb46424",
+      "runId": "run-synthetic-0142",
+      "sequence": 16,
+      "hash": "214c3032b270dbbac17e3184160970125281d9457115326ba9ca95bc899a4213"
+    },
+    {
+      "actor": "demo-operator",
+      "data": {
+        "approvalId": "approval-001",
+        "approved": true,
+        "note": "Synthetic evidence and policy checks reviewed"
+      },
+      "type": "approval.decided",
+      "eventId": "evt-0017",
+      "occurredAt": "2026-09-04T17:00:16.000Z",
+      "previousHash": "214c3032b270dbbac17e3184160970125281d9457115326ba9ca95bc899a4213",
+      "runId": "run-synthetic-0142",
+      "sequence": 17,
+      "hash": "73e5e7e99fd1ed9272b35a1743acc3c456d969f3ded2799c4950f539c483e89b"
+    },
+    {
+      "actor": "tool-runtime",
+      "data": {
+        "attempt": 1,
+        "callId": "release-case-hold",
+        "tool": "case.release"
+      },
+      "type": "tool.attempt.started",
+      "eventId": "evt-0018",
+      "occurredAt": "2026-09-04T17:00:17.000Z",
+      "previousHash": "73e5e7e99fd1ed9272b35a1743acc3c456d969f3ded2799c4950f539c483e89b",
+      "runId": "run-synthetic-0142",
+      "sequence": 18,
+      "hash": "adf31e9e8b950a9abb1efa402a4fa888a4aefec226faf5dca2439758462f1a28"
+    },
+    {
+      "actor": "tool-runtime",
+      "data": {
+        "attempt": 1,
+        "callId": "release-case-hold",
+        "error": "Injected transient failure at case.release",
+        "tool": "case.release"
+      },
+      "type": "tool.attempt.retryable_failure",
+      "eventId": "evt-0019",
+      "occurredAt": "2026-09-04T17:00:18.000Z",
+      "previousHash": "adf31e9e8b950a9abb1efa402a4fa888a4aefec226faf5dca2439758462f1a28",
+      "runId": "run-synthetic-0142",
+      "sequence": 19,
+      "hash": "eb479774c42c9f57febb9785eada11d956ed0d6e265953fa26b17a86d7921090"
+    },
+    {
+      "actor": "tool-runtime",
+      "data": {
+        "attempt": 2,
+        "callId": "release-case-hold",
+        "tool": "case.release"
+      },
+      "type": "tool.attempt.started",
+      "eventId": "evt-0020",
+      "occurredAt": "2026-09-04T17:00:19.000Z",
+      "previousHash": "eb479774c42c9f57febb9785eada11d956ed0d6e265953fa26b17a86d7921090",
+      "runId": "run-synthetic-0142",
+      "sequence": 20,
+      "hash": "4a55434cb0ed536132d86d49f074ad407fa0762025b70a6bb690258545edd0d9"
+    },
+    {
+      "actor": "tool-runtime",
+      "data": {
+        "attempt": 2,
+        "callId": "release-case-hold",
+        "tool": "case.release"
+      },
+      "type": "tool.attempt.completed",
+      "eventId": "evt-0021",
+      "occurredAt": "2026-09-04T17:00:20.000Z",
+      "previousHash": "4a55434cb0ed536132d86d49f074ad407fa0762025b70a6bb690258545edd0d9",
+      "runId": "run-synthetic-0142",
+      "sequence": 21,
+      "hash": "c656acbcfefe8edf35f9954473a56b02728a480c82d5b745c4a05f895cd79536"
+    },
+    {
+      "actor": "tool-runtime",
+      "data": {
+        "attempts": 2,
+        "callId": "release-case-hold",
+        "output": {
+          "caseId": "case-0142",
+          "idempotencyKey": "release-case-hold",
+          "released": true,
+          "tenantId": "northstar-demo"
+        },
+        "replayed": false,
+        "tool": "case.release"
+      },
+      "type": "tool.completed",
+      "eventId": "evt-0022",
+      "occurredAt": "2026-09-04T17:00:21.000Z",
+      "previousHash": "c656acbcfefe8edf35f9954473a56b02728a480c82d5b745c4a05f895cd79536",
+      "runId": "run-synthetic-0142",
+      "sequence": 22,
+      "hash": "d67650e49c7ee30f17f0f422ea2d76990bf77f3b44f8d398e70eae9a12cf9a4b"
+    },
+    {
+      "actor": "system",
+      "data": {
+        "stepId": "propose-action"
+      },
+      "type": "step.completed",
+      "eventId": "evt-0023",
+      "occurredAt": "2026-09-04T17:00:22.000Z",
+      "previousHash": "d67650e49c7ee30f17f0f422ea2d76990bf77f3b44f8d398e70eae9a12cf9a4b",
+      "runId": "run-synthetic-0142",
+      "sequence": 23,
+      "hash": "a93036418b4589f39f51f48b5d7632f06ce88c38f1b5bb2ff3384f1703fb88f1"
+    },
+    {
+      "actor": "system",
+      "data": {
+        "completedSteps": 3
+      },
+      "type": "run.completed",
+      "eventId": "evt-0024",
+      "occurredAt": "2026-09-04T17:00:23.000Z",
+      "previousHash": "a93036418b4589f39f51f48b5d7632f06ce88c38f1b5bb2ff3384f1703fb88f1",
+      "runId": "run-synthetic-0142",
+      "sequence": 24,
+      "hash": "fea3b464f1ec193991a0ac81ff8281cf1faf03a14f764fbf5aef42df7bbeccbb"
+    }
+  ],
+  "graph": {
+    "edges": [
+      {
+        "from": "case-0142",
+        "id": "edge-case-party",
+        "relation": "concerns",
+        "tenantId": "northstar-demo",
+        "to": "party-0901"
+      },
+      {
+        "from": "case-0142",
+        "id": "edge-case-document",
+        "relation": "supported_by",
+        "tenantId": "northstar-demo",
+        "to": "evidence-doc-0088"
+      },
+      {
+        "from": "case-0142",
+        "id": "edge-case-signal",
+        "relation": "supported_by",
+        "tenantId": "northstar-demo",
+        "to": "evidence-signal-0021"
+      }
+    ],
+    "nodes": [
+      {
+        "attributes": {
+          "status": "review",
+          "subject": "Synthetic account 0142"
+        },
+        "classification": "internal",
+        "id": "case-0142",
+        "kind": "case",
+        "tenantId": "northstar-demo"
+      },
+      {
+        "attributes": {
+          "country": "US",
+          "name": "Demo Company LLC"
+        },
+        "classification": "restricted",
+        "id": "party-0901",
+        "kind": "organization",
+        "tenantId": "northstar-demo"
+      },
+      {
+        "attributes": {
+          "finding": "Ownership document verified",
+          "source": "document-service"
+        },
+        "classification": "restricted",
+        "id": "evidence-doc-0088",
+        "kind": "evidence",
+        "tenantId": "northstar-demo"
+      },
+      {
+        "attributes": {
+          "finding": "Account signal stable",
+          "source": "transaction-monitor"
+        },
+        "classification": "restricted",
+        "id": "evidence-signal-0021",
+        "kind": "evidence",
+        "tenantId": "northstar-demo"
+      }
+    ]
+  },
+  "meta": {
+    "generatedAt": "2026-09-04T17:01:00.000Z",
+    "note": "All organizations, people, case identifiers, and outcomes are synthetic.",
+    "scenario": "Synthetic operational hold review",
+    "synthetic": true
+  },
+  "metrics": {
+    "approvals": 1,
+    "events": 24,
+    "ledgerValid": true,
+    "retries": 1,
+    "toolAttempts": 4,
+    "toolsCompleted": 3
+  },
+  "run": {
+    "context": {
+      "caseId": "case-0142",
+      "tenantId": "northstar-demo",
+      "results": {
+        "retrieve-case-context": {
+          "evidenceIds": ["evidence-signal-0021", "evidence-doc-0088"],
+          "hitCount": 4,
+          "provenancePaths": [
+            ["case-0142", "evidence-signal-0021"],
+            ["case-0142"],
+            ["case-0142", "evidence-doc-0088"],
+            ["case-0142", "party-0901"]
+          ]
+        },
+        "assess-case-risk": {
+          "band": "low",
+          "evidenceCount": 2,
+          "score": 24
+        },
+        "release-case-hold": {
+          "caseId": "case-0142",
+          "idempotencyKey": "release-case-hold",
+          "released": true,
+          "tenantId": "northstar-demo"
+        }
+      }
+    },
+    "definitionId": "synthetic-hold-review",
+    "nextStepIndex": 3,
+    "runId": "run-synthetic-0142",
+    "status": "completed",
+    "version": "1.0.0"
+  }
+}

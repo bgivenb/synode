@@ -1,0 +1,7 @@
+{
+  "app": "npx tsx infra/app.ts",
+  "context": {
+    "@aws-cdk/aws-ecs:removeDefaultDeploymentAlarm": true,
+    "@aws-cdk/aws-rds:databaseProxyUniqueResourceName": true
+  }
+}

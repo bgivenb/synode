@@ -1,0 +1,8 @@
+.git
+.github
+artifacts
+cdk.out
+coverage
+dist
+node_modules
+*.log

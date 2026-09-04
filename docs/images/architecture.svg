@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560" role="img" aria-labelledby="title description">
+  <title id="title">Synode architecture</title>
+  <description id="description">Agents submit untrusted proposals to a governed control plane. Typed tools, policy, approvals, idempotent execution, tenant-scoped hybrid retrieval, and a durable hash-chained PostgreSQL ledger protect trusted systems.</description>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0f1c19"/><stop offset="1" stop-color="#07100f"/></linearGradient>
+    <linearGradient id="core" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#18372c"/><stop offset="1" stop-color="#10231d"/></linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#58766c"/></marker>
+    <style>
+      .label{font:700 13px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:2px;fill:#6e8d82}.title{font:700 20px Inter,Arial,sans-serif;fill:#effff9}.body{font:500 14px Inter,Arial,sans-serif;fill:#9ab3aa}.num{font:700 12px ui-monospace,SFMono-Regular,Menlo,monospace;fill:#67f5bc}.line{stroke:#58766c;stroke-width:2;fill:none;marker-end:url(#arrow)}
+    </style>
+  </defs>
+  <rect width="1200" height="560" rx="24" fill="url(#bg)"/>
+  <circle cx="600" cy="-80" r="310" fill="#67f5bc" opacity=".045"/>
+  <text class="label" x="55" y="58">UNTRUSTED PROPOSALS</text>
+  <text class="label" x="450" y="58">SYNODE CONTROL PLANE</text>
+  <text class="label" x="930" y="58">TRUSTED SYSTEMS</text>
+
+  <g transform="translate(55 90)">
+    <rect width="280" height="100" rx="14" fill="#101f1b" stroke="#27453b"/><text class="num" x="20" y="28">01</text><text class="title" x="20" y="58">Evidence agent</text><text class="body" x="20" y="82">Requests scoped context</text>
+    <rect y="125" width="280" height="100" rx="14" fill="#101f1b" stroke="#27453b"/><text class="num" x="20" y="153">02</text><text class="title" x="20" y="183">Risk agent</text><text class="body" x="20" y="207">Proposes an assessment</text>
+    <rect y="250" width="280" height="100" rx="14" fill="#101f1b" stroke="#27453b"/><text class="num" x="20" y="278">03</text><text class="title" x="20" y="308">Operations agent</text><text class="body" x="20" y="332">Proposes a side effect</text>
+  </g>
+
+  <path class="line" d="M350 265 H415"/>
+  <g transform="translate(425 90)">
+    <rect width="360" height="410" rx="20" fill="url(#core)" stroke="#3b7a63" stroke-width="1.5"/>
+    <circle cx="180" cy="-1" r="4" fill="#67f5bc" filter="url(#glow)"/>
+    <rect x="28" y="30" width="304" height="76" rx="12" fill="#10231d" stroke="#315e4d"/><text class="title" x="50" y="63">Typed tool registry</text><text class="body" x="50" y="87">Schemas · risk · reversibility</text>
+    <path class="line" d="M180 108 V130"/>
+    <rect x="28" y="132" width="304" height="76" rx="12" fill="#10231d" stroke="#315e4d"/><text class="title" x="50" y="165">Policy engine</text><text class="body" x="50" y="189">Deny  ›  approve  ›  allow</text>
+    <path class="line" d="M180 210 V232"/>
+    <rect x="28" y="234" width="304" height="76" rx="12" fill="#10231d" stroke="#315e4d"/><text class="title" x="50" y="267">Approval state</text><text class="body" x="50" y="291">Exact call · reviewer · rationale</text>
+    <path class="line" d="M180 312 V334"/>
+    <rect x="28" y="336" width="304" height="48" rx="12" fill="#10231d" stroke="#315e4d"/><text class="body" x="50" y="365">Idempotency · retries · recovery</text>
+  </g>
+  <path class="line" d="M795 265 H855"/>
+
+  <g transform="translate(870 90)">
+    <rect width="275" height="100" rx="14" fill="#0e1f1d" stroke="#24545a"/><text class="title" x="20" y="45">Hybrid retrieval</text><text class="body" x="20" y="71">FTS · pgvector · graph paths</text>
+    <rect y="125" width="275" height="100" rx="14" fill="#0e1f1d" stroke="#24545a"/><text class="title" x="20" y="170">Human review</text><text class="body" x="20" y="196">Identity · decision · note</text>
+    <rect y="250" width="275" height="100" rx="14" fill="#0e1f1d" stroke="#24545a"/><text class="title" x="20" y="295">PostgreSQL ledger</text><text class="body" x="20" y="321">RLS · CAS · outbox · replay</text>
+  </g>
+  <text class="body" x="55" y="520">Model output never grants itself authority.</text>
+  <text class="body" x="1145" y="520" text-anchor="end">AWS CDK: private ECS · Aurora · KMS · WAF · retained evidence</text>
+</svg>

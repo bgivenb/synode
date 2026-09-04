@@ -1,0 +1,47 @@
+{
+  "name": "@bgivenb/synode",
+  "version": "0.1.0",
+  "description": "A governed execution runtime for high-consequence AI workflows.",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.12"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "check": "biome check .",
+    "check:fix": "biome check --write .",
+    "demo": "tsx src/demo/cli.ts",
+    "demo:verify": "tsx src/demo/verify.ts",
+    "format": "biome format --write .",
+    "format:check": "biome format .",
+    "infra:synth": "cdk synth --quiet",
+    "lint": "biome lint .",
+    "serve": "tsx src/server.ts",
+    "test": "vitest run",
+    "test:postgres": "vitest run tests/postgres.integration.ts",
+    "test:coverage": "vitest run --coverage",
+    "typecheck": "tsc --noEmit",
+    "verify": "npm run format:check && npm run lint && npm run typecheck && npm run test:coverage && npm run build && npm run infra:synth && npm run demo:verify"
+  },
+  "dependencies": {
+    "pg": "8.23.0",
+    "zod": "4.5.4"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.5.12",
+    "@types/node": "26.4.1",
+    "@types/pg": "8.23.1",
+    "@vitest/coverage-v8": "5.0.0",
+    "aws-cdk": "2.1140.0",
+    "aws-cdk-lib": "2.268.0",
+    "constructs": "10.8.1",
+    "fast-check": "4.9.0",
+    "tsx": "4.23.13",
+    "typescript": "7.0.2",
+    "vitest": "5.0.0"
+  },
+  "allowScripts": {
+    "esbuild@0.28.2": true
+  }
+}
