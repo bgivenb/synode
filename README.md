@@ -1,7 +1,7 @@
 # Synode
 
 [![CI](https://github.com/bgivenb/synode/actions/workflows/ci.yml/badge.svg)](https://github.com/bgivenb/synode/actions/workflows/ci.yml)
-[![Live console](https://img.shields.io/badge/live-operations_console-67f5bc?labelColor=101512)](https://bgivenb.github.io/synode/)
+[![Live console](https://img.shields.io/badge/live-operations_console-475569)](https://bgivenb.github.io/synode/)
 [![PostgreSQL 17](https://img.shields.io/badge/PostgreSQL_17-pgvector-6adfe8?labelColor=101512)](db/README.md)
 [![AWS CDK](https://img.shields.io/badge/AWS_CDK-asserted-ffbf69?labelColor=101512)](infra/README.md)
 [![Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-d9e3de?labelColor=101512)](LICENSE)
@@ -9,8 +9,6 @@
 Synode is a public research implementation of a governed execution runtime for consequential AI workflows. Agents can gather evidence, assess it, and propose actions; they cannot grant themselves authority. Typed contracts, deterministic policy, accountable human checkpoints, durable idempotency, tenant-scoped retrieval, and a tamper-evident event ledger control every side effect.
 
 [**Open the operations console →**](https://bgivenb.github.io/synode/)
-
-![Synode admin console showing a completed synthetic workflow, policy controls, a human checkpoint, and a verified audit ledger](docs/images/control-plane.png)
 
 The checked-in scenario is deterministic and fully synthetic. Three specialized agents resolve a case, pause before an irreversible action, record a separately attributed approval, recover from an injected transient failure, and verify the resulting audit chain.
 

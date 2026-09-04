@@ -12,7 +12,7 @@
       <aside class="sidebar">
         <a class="brand" href="#overview" aria-label="Synode operations overview">
           <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span><span></span></span>
-          <span>synode</span>
+          <span>Synode</span>
         </a>
         <div class="environment"><span></span> Research environment</div>
         <nav aria-label="Console navigation">
@@ -36,7 +36,7 @@
         <header class="topbar">
           <div class="breadcrumb"><span>Control plane</span><b>/</b><strong>Overview</strong></div>
           <div class="topbar-actions">
-            <span class="system-state"><i></i> System healthy</span>
+            <span class="system-state"><i></i> Recorded run · healthy</span>
             <a href="https://github.com/bgivenb/synode">Source</a>
           </div>
         </header>
@@ -44,8 +44,7 @@
         <main id="overview">
           <section class="page-header">
             <div>
-              <p class="eyebrow">WORKFLOW OPERATIONS</p>
-              <h1>Governed agent execution</h1>
+              <h1>Workflow operations</h1>
               <p>Inspect policy decisions, approvals, tool attempts, and audit evidence.</p>
             </div>
             <span class="demo-badge">Synthetic research scenario</span>
@@ -61,9 +60,11 @@
           <section class="primary-grid">
             <article class="panel run-panel">
               <div class="panel-header">
-                <div><p>ACTIVE RUN</p><h2>Synthetic operational hold review</h2></div>
+                <div><p>RECORDED RUN</p><h2>Synthetic operational hold review</h2></div>
                 <span class="verified-chip">✓ Ledger verified</span>
               </div>
+              <!-- biome-ignore lint/a11y/noNoninteractiveTabindex: Keyboard users need to scroll the wide workflow table. -->
+              <section class="table-scroll" aria-label="Workflow steps" tabindex="0">
               <table class="step-table">
                 <caption class="sr-only">Workflow steps</caption>
                 <thead>
@@ -75,6 +76,7 @@
                   <tr><td><b>03</b> Release hold</td><td>operations-agent</td><td>Human checkpoint</td><td><em>Completed</em></td></tr>
                 </tbody>
               </table>
+              </section>
               <div class="ledger-strip"><span>Final ledger digest</span><code id="ledger-hash">loading…</code></div>
             </article>
 
