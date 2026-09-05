@@ -2,6 +2,8 @@
 
 A five-minute walkthrough of a portfolio project by Given Borthwick, developed with AI coding assistance. It makes the implementation, decisions, and verification inspectable without exposing private-company code.
 
+Synode reflects patterns and engineering concerns from my professional work on production systems. It demonstrates my approach to architecture, controlled automation, reliability, and verification through an independent implementation using synthetic data—not company code or a copy of a deployed system.
+
 ## 1. What the project explores
 
 Synode explores a specific question: how can agents propose useful work without becoming the authority that permits it?

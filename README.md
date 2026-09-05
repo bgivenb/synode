@@ -8,6 +8,8 @@
 
 Synode is an independent portfolio and research project exploring a governed execution runtime for consequential AI workflows. Agents can gather evidence, assess it, and propose actions; they cannot grant themselves authority. Typed contracts, deterministic policy, accountable human checkpoints, durable idempotency, tenant-scoped retrieval, and a tamper-evident event ledger define the execution controls.
 
+Synode reflects patterns and engineering concerns from my professional work on production systems. It demonstrates my approach to architecture, controlled automation, reliability, and verification through an independent implementation using synthetic data—not company code or a copy of a deployed system.
+
 [**Open the operations console →**](https://bgivenb.github.io/synode/)
 
 [Technical walkthrough](docs/WALKTHROUGH.md): a five-minute guide to a key design decision, an injected failure, the demo's tradeoffs, and AI-assisted development and verification.
