@@ -6,9 +6,11 @@
 [![AWS CDK](https://img.shields.io/badge/AWS_CDK-asserted-ffbf69?labelColor=101512)](infra/README.md)
 [![Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-d9e3de?labelColor=101512)](LICENSE)
 
-Synode is a public research implementation of a governed execution runtime for consequential AI workflows. Agents can gather evidence, assess it, and propose actions; they cannot grant themselves authority. Typed contracts, deterministic policy, accountable human checkpoints, durable idempotency, tenant-scoped retrieval, and a tamper-evident event ledger control every side effect.
+Synode is an independent portfolio and research project exploring a governed execution runtime for consequential AI workflows. Agents can gather evidence, assess it, and propose actions; they cannot grant themselves authority. Typed contracts, deterministic policy, accountable human checkpoints, durable idempotency, tenant-scoped retrieval, and a tamper-evident event ledger define the execution controls.
 
 [**Open the operations console →**](https://bgivenb.github.io/synode/)
+
+[Technical walkthrough](docs/WALKTHROUGH.md): a five-minute guide to a key design decision, an injected failure, the demo's tradeoffs, and AI-assisted development and verification.
 
 The checked-in scenario is deterministic and fully synthetic. Three specialized agents resolve a case, pause before an irreversible action, record a separately attributed approval, recover from an injected transient failure, and verify the resulting audit chain.
 
